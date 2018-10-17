@@ -1,7 +1,7 @@
-from Tkinter import *
+import sys
 import time
 import random
-import Tkinter as tk
+import tkinter as tk
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -20,15 +20,15 @@ class Application(tk.Frame):
 
     def createWidgets(self):
 
-        self.w = Canvas(self, width=self.nb_cells*self.length_cells, height=self.nb_cells*self.length_cells)
+        self.w = tk.Canvas(self, width=self.nb_cells*self.length_cells, height=self.nb_cells*self.length_cells)
         self.w.grid(row=0, column=0, rowspan=4)
-        self.start = Button(self, text="Start!", command=self.main_event)
+        self.start = tk.Button(self, text="Start!", command=self.main_event)
         self.start.grid(row=0, column=1)
-        self.count = Button(self, text="Generation : 0", command = lambda e: None)
+        self.count = tk.Button(self, text="Generation : 0", command = lambda e: None)
         self.count.grid(row=1, column=1)
-        self.quit = Button(self, text="Quitter", command=quit)
+        self.quit = tk.Button(self, text="Quitter", command=quit)
         self.quit.grid(row=2, column=1)
-        self.randomstartbutton = Button(self, text="Random Start", command=self.randomstart)
+        self.randomstartbutton = tk.Button(self, text="Random Start", command=self.randomstart)
         self.randomstartbutton.grid(row=3, column=1)
 
         for i in range(self.nb_cells):
@@ -96,10 +96,9 @@ class Application(tk.Frame):
                 l = file.readline()
 
 
-        except IndexError:
-            print x
-            print y
-            return 0
+        except IndexError as e:
+            print(e)
+            
 
 
     def set_state(self,cell,state):
